@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Git Tips &#8212; It&#39;s Better To Git Then Recieve 1,0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to It’s Better To Git Then Recieve’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to It’s Better To Git Then Recieve’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">It&#39;s Better To Git Then Recieve 1,0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Git Tips</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="git-tips">
+<h1>Git Tips<a class="headerlink" href="#git-tips" title="Permalink to this headline">¶</a></h1>
+<section id="semantic-changes">
+<h2>Semantic Changes<a class="headerlink" href="#semantic-changes" title="Permalink to this headline">¶</a></h2>
+<section id="removing-a-change-from-the-index">
+<h3>Removing A Change From The Index<a class="headerlink" href="#removing-a-change-from-the-index" title="Permalink to this headline">¶</a></h3>
+<p><strong>Previously</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD</span> <span class="pre">&lt;file&gt;</span></code></p>
+<p>Totally intuitive to use git reset to remove a file from staging right?</p>
+<p><strong>New and *Slightly* Improved</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">restore</span> <span class="pre">--staged</span> <span class="pre">&lt;file&gt;</span></code></p>
+<p>Makes a little more sense, i.e. “I’m restoring the index to a previous state”</p>
+</section>
+<section id="changing-branches">
+<h3>Changing Branches<a class="headerlink" href="#changing-branches" title="Permalink to this headline">¶</a></h3>
+<p><strong>Previously</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;branch&gt;</span></code></p>
+<p>Always annoyed me</p>
+<p><strong>New and Improved</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">switch</span> <span class="pre">&lt;branch&gt;</span></code></p>
+</section>
+</section>
+<section id="helpful-stuff">
+<h2>Helpful Stuff<a class="headerlink" href="#helpful-stuff" title="Permalink to this headline">¶</a></h2>
+<p><strong>For Those Prone To Typos</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">help.autocorrect</span> <span class="pre">1</span></code></p>
+<p><strong>For The Love of One-Liners</strong>
+List all untracked files
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">ls-files</span> <span class="pre">-o</span></code></p>
+<p>Find root directory of the repo
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rev-parse</span> <span class="pre">--show-toplevel</span></code></p>
+<p>Get name of branch
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rev-parse</span> <span class="pre">--abbrev-ref</span> <span class="pre">HEAD</span></code></p>
+<p><strong>Quickly Remove Old Local Branches</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--prune</span></code></p>
+<p><strong>Pull Remote Changes Without Merge Commit</strong>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span></code></p>
+</section>
+<section id="creating-custom-git-commands">
+<h2>Creating Custom Git Commands<a class="headerlink" href="#creating-custom-git-commands" title="Permalink to this headline">¶</a></h2>
+<p>When running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">&lt;command</span></code> git searches $PATH for <strong>“&lt;command&gt;”</strong> if it isn’t a builtin command by looking for executable files named <strong>git-&lt;command&gt;</strong>.</p>
+<p>This enables git to be easily extended or customized. Here’s one I wrote called <a class="reference external" href="https://github.com/mraspberry/scripts/blob/master/python/bin/git-propen">git-propen</a>.
+It gathers information about the current branch then uses Github’s API to open a PR quickly and easily.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Git Tips</a><ul>
+<li><a class="reference internal" href="#semantic-changes">Semantic Changes</a><ul>
+<li><a class="reference internal" href="#removing-a-change-from-the-index">Removing A Change From The Index</a></li>
+<li><a class="reference internal" href="#changing-branches">Changing Branches</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#helpful-stuff">Helpful Stuff</a></li>
+<li><a class="reference internal" href="#creating-custom-git-commands">Creating Custom Git Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to It’s Better To Git Then Recieve’s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Tips.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to It’s Better To Git Then Recieve’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">It&#39;s Better To Git Then Recieve 1,0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Git Tips</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Matthew Raspberry.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>
